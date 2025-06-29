@@ -1,2 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module classpath="CMake" type="CPP_MODULE" version="4" />
+#include <iostream>
+#include <iomanip>
+
+// Function prototypes
+void displayMenu();
+void collectUserInput(std::string& word1, std::string& word2, int& number1, float& number2);
+void displayStory(const std::string& word1, const std::string& word2, int number1, float number2);
+
+int main() {
+    int menuChoice = 0;
+    std::string word1, word2;
+    int number1;
+    float number2;
+    
+    while (menuChoice != 2) {
+        displayMenu();
+        std::cin >> menuChoice;
+        
+        switch (menuChoice) {
+            case 1:
+                collectUserInput(word1, word2, number1, number2);
+                displayStory(word1, word2, number1, number2);
+                break;
+            case 2:
+                std::cout << "Thank you for playing Mad Libs!\n";
+                break;
+            default:
+                std::cout << "Invalid choice. Please select 1 or 2.\n";
+        }
+    }
+    
+    return 0;
+}
+
+void displayMenu() {
+    std::cout << "\nMAD LIBS GAME\n";
+    std::cout << "=============\n";
+    std::cout << "1. Play Mad Libs\n";
+    std::cout << "2. Quit\n";
+    std::cout << "Enter your choice (1-2): ";
+}
+
+void collectUserInput(std::string& word1, std::string& word2, int& number1, float& number2) {
+    std::cout << "\nLet's create a story! I need a few words from you:\n";
+    
+    std::cout << "Enter an animal: ";
+    std::cin >> word1;
+    
+    std::cout << "Enter a food item: ";
+    std::cin >> word2;
+    
+    std::cout << "Enter your age: ";
+    std::cin >> number1;
+    
+    std::cout << "Enter your height in feet (use decimal like 5.8): ";
+    std::cin >> number2;
+}
+
+void displayStory(const std::string& word1, const std::string& word2, int number1, float number2) {
+    std::cout << "\n" << std::string(50, '=') << "\n";
+    std::cout << "YOUR SILLY STORY:\n";
+    std::cout << std::string(50, '=') << "\n";
+    
+    std::cout << "Yesterday, I went to the zoo and saw the most amazing " << word1 << "!\n";
+    std::cout << "It was eating " << word2 << " and seemed to be about " << number1 << " years old.\n";
+    std::cout << "The zookeeper told me that this " << word1 << " was exactly " 
+              << std::fixed << std::setprecision(1) << number2 << " feet tall!\n";
+    std::cout << "What an incredible adventure that was!\n";
+    std::cout << std::string(50, '=') << "\n";
+}
